@@ -1,0 +1,84 @@
+---
+import '../../styles/main.scss';    
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+    const caseStudies = await getCollection('case-studies');
+
+    return caseStudies.map((caseStudy: CollectionEntry<'case-studies'>) => {
+        return {
+            params: {
+                slug: caseStudy.data.slug,
+            },
+            props: {
+                caseStudy,
+            },
+        };
+    });
+}
+
+const { caseStudy } = Astro.props;
+const { Content } = await render(caseStudy);
+---
+
+<!doctype html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <main>
+            <p><a href="/">Back home</a></p>
+            <article>
+                <header>
+                    <p>Case Study</p>
+                    <h1>{caseStudy.data.title}</h1>
+                    <dl>
+                        {caseStudy.data.client && (
+                            <>
+                                <dt>Client</dt>
+                                <dd>{caseStudy.data.client}</dd>
+                            </>
+                        )}
+
+                        {caseStudy.data.studio_agency && (
+                            <>
+                                <dt>Studio / Agency</dt>
+                                <dd>{caseStudy.data.studio_agency}</dd>
+                            </>
+                        )}
+
+                        {caseStudy.data.year && (
+                            <>
+                                <dt>Year</dt>
+                                <dd>{caseStudy.data.year}</dd>
+                            </>
+                        )}
+
+                        {caseStudy.data.role && (
+                            <>
+                                <dt>Role</dt>
+                                <dd>{caseStudy.data.role}</dd>
+                            </>
+                        )}
+                        
+                        {caseStudy.data.url && (
+                            <>
+                                <dt>Website</dt>
+                                <dd>
+                                    <a href="{caseStudy.data.url}">
+                                        {caseStudy.data.url}
+                                    </a>
+                                </dd>
+                            </>
+                        )}
+                    </dl>
+                </header>
+                <Content />
+            </article>
+        </main>        
+    </body>
+</html>

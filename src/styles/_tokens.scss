@@ -1,0 +1,74 @@
+:root {
+    color-scheme: light;
+
+    /*
+     * Brand palette
+     * These are available colours, not necessarily active UI tokens.
+     */
+
+    --palette-carona: #F99D2A;
+    --palette-hamtaro-brown: #AE6E1D;
+    --palette-torchlight: #FFCA8A;
+    --palette-blanched-almond: #FFEBD2;
+    --palette-tuscan: #FFD7A6;
+    --palette-copious-caramel: #D98823;
+    --palette-peach-beach: #FFD0A2;
+    --palette-bisque: #FFE3C7;
+    --palette-chocolate-castle: #462805;
+
+    --palette-white: #FFFFFF;
+    --palette-black: #000000;
+    --palette-ash: #C2BBA6;
+    --palette-black-mana: #848484;
+    --palette-vulcanised: #434343;
+    --palette-inkwell-inception: #1E1E1E;
+
+    /*
+    * Active site colours
+    */
+
+    --color-page: var(--palette-white);
+    --color-surface: var(--palette-white);
+    --color-surface-warm: var(--palette-blanched-almond);
+
+    --color-text: var(--palette-inkwell-inception);
+    --color-text-muted: var(--palette-vulcanised);
+    --color-text-soft: var(--palette-black-mana);
+
+    --color-border: var(--palette-ash);
+
+    --color-brand-primary: #FF9D2A;
+    --color-brand-primary-original: var(--palette-carona);
+
+    --color-brand-dark: var(--palette-inkwell-inception);
+    --color-brand-secondary: var(--palette-hamtaro-brown);
+    --color-brand-brown: var(--palette-chocolate-castle);
+
+    --color-highlight: var(--palette-torchlight);
+    --color-highlight-soft: var(--palette-bisque);
+
+    /*
+     * Typography
+     */
+
+    --font-body: 'Source Sans 3', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display: 'Source Sans 3', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-logo: 'Squaretype B', var(--font-display);
+
+    /*
+     * Layout
+     */
+
+    --space-page: clamp(1.25rem, 4vw, 4rem);
+    --content-width: 76rem;
+    --reading-width: 48rem;
+
+    /*
+     * Shape and depth
+     */
+
+    --radius-large: 1.5rem;
+    --radius-medium: 0.9rem;
+
+    --shadow-soft: 0 1.5rem 4rem rgba(70, 40, 5, 0.12);
+}

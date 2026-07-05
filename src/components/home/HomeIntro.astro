@@ -1,0 +1,23 @@
+---
+import { render } from 'astro:content';
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const {
+    label,
+    heading
+} = entry.data;
+---
+
+<section class="home-section home-intro" aria-labelledby="home-intro-title">
+    {label && (
+        <p>{label}</p>
+    )}
+
+    {heading && (
+        <h2 id="home-intro-title">{heading}</h2>
+    )}
+
+    <Content />
+</section>

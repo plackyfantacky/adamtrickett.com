@@ -1,0 +1,21 @@
+---
+
+---
+<section class="arrow-cloud">
+    <div class="arrow-cloud__canvas" data-arrow-cloud></div>
+</section>
+<script>
+    import { createArrowCloudScene } from "../lib/arrow-cloud/arrowCloudScene";
+
+    const containers = document.querySelectorAll('[data-arrow-cloud]');
+
+    containers.forEach((container) => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        if (prefersReducedMotion) {
+            container.setAttribute('data-motion-disable', 'true');
+            return;
+        }
+        createArrowCloudScene(container);
+    });
+</script>

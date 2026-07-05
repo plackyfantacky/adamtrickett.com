@@ -22,3 +22,7 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 .AppleDouble
+rtfolio/Content
+
+# tools
+.vscode/

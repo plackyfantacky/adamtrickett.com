@@ -1,0 +1,41 @@
+@use '_bridge' as *; /* don't judge me */
+
+html {
+    font-size: 100%;
+}
+
+body {
+    font-family: $fontBody;
+    font-weight: $fontWeightBody;
+    line-height: $lineHeightBody;
+    color: $colorText;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-family: $fontDisplay;
+    font-weight: $fontWeightHeading;
+    line-height: $lineHeightHeading;
+    letter-spacing: $letterSpacingHeading;
+    color: $colorText;
+}
+
+h1 { font-size: $fontSizeH1; }
+h2 { font-size: $fontSizeH2; }
+h3 { font-size: $fontSizeH3; }
+h4 { font-size: $fontSizeH4; }
+h5 { font-size: $fontSizeH5; }
+h6 { font-size: $fontSizeH6; }
+
+p {
+    max-width: $readingWidth;
+    margin: 0 0 1.15rem;
+    font-size: $fontSizeBody;
+    line-height: $lineHeightBody;
+    color: $colorTextMuted;
+}

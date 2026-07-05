@@ -1,0 +1,42 @@
+---
+import { render } from 'astro:content';
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const {
+    label,
+    heading,
+    primaryCta,
+    secondaryCta
+} = entry.data;
+---
+<section class="home-threshold" aria-labelledby="home-threshold-title">
+    <div class="home-threshold__inner">
+        { label && (
+            <p class="home-threshold__label">{label}</p>
+        )}
+        { heading && (
+            <h2 id="home-threshold-title">{heading}</h2>
+        )}
+        <div class="home-threshold__content">
+            <Content />
+        </div>
+        {(primaryCta || secondaryCta) && (
+            <div class="home-threshold__actions">
+                {primaryCta && (
+                    <a class="button button--primary" href={primaryCta.url}>
+                        {primaryCta.label}
+                    </a>
+                )}
+                {secondaryCta && (
+                    <a class="button button--secondary" href={secondaryCta.url}>
+                        {secondaryCta.label}
+                    </a>
+                )}
+            </div>
+        )}
+    </div>
+</section>
+
+

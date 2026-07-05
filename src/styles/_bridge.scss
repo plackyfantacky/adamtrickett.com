@@ -1,0 +1,56 @@
+/*
+ * Completely unnecessary CSS variable to Sass token bridge. I don't care, this is my website and I'll do what I want with it. I miss Sass.
+ */
+
+$colorPage: var(--color-page);
+$colorSurface: var(--color-surface);
+$colorSurfaceWarm: var(--color-surface-warm);
+
+$colorText: var(--color-text);
+$colorTextMuted: var(--color-text-muted);
+$colorTextSoft: var(--color-text-soft);
+
+$colorBorder: var(--color-border);
+
+$colorBrand: var(--color-brand-primary);
+$colorBrandPecondary: var(--color-brand-secondary);
+$colorBrandDark: var(--color-brand-dark);
+
+$colorHighlight: var(--color-highlight);
+$colorHighlightSoft: var(--color-highlight-soft);
+
+/*
+ * Typography
+ */
+
+$fontBody: var(--font-body);
+$fontDisplay: var(--font-display);
+$fontLogo: var(--font-logo);
+
+$fontWeightBody: --var(--font-weight-body);
+$fontWeightHeading: var(--font-weight-heading);
+
+$lineHeightBody: var(--type-line-height-body);
+$lineHeightHeading: var(--type-line-height-heading);
+$letterSpacingHeading: var(--type-letter-spacing-heading);
+
+$fontSizeH1: var(--type-size-h1);
+$fontSizeH2: var(--type-size-h2);
+$fontSizeH3: var(--type-size-h3);
+$fontSizeH4: var(--type-size-h4);
+$fontSizeH5: var(--type-size-h5);
+$fontSizeH6: var(--type-size-h6);
+
+$fontSizeDisplay: var(--type-size-display);
+$fontSizeBody: var(--type-size-body);
+$fontSizeSmall: var(--type-size-small);
+$fontSizeTiny: var(--type-size-tiny);
+
+$spacePage: var(--space-page);
+$contentWidth: var(--content-width);
+$readingWidth: var(--reading-width);
+
+$radiusLarge: var(--radius-large);
+$radiusMedium: var(--radius-medium);
+
+$shadowSoft: var(--shadow-soft);

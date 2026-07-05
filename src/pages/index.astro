@@ -1,5 +1,28 @@
 ---
+import '../styles/main.scss';
+import ArrowCloud from "../components/ArrowCloudHero.astro";
+import { getCollection } from 'astro:content'
 
+import HomeHero from "../components/home/HomeHero.astro";
+import HomeThreshold from "../components/home/HomeThreshold.astro";
+import HomeIntro from "../components/home/HomeIntro.astro"
+
+const homepageEntries = await getCollection('homepage');
+
+const homepageSections = Object.fromEntries(
+    homepageEntries.map((entry) => {
+        return [entry.data.section, entry];
+    })
+);
+
+const hero = homepageSections.hero;
+const threshold = homepageSections.threshold;
+const intro = homepageSections.intro;
+
+
+if (!hero || !threshold || !intro) {
+    throw new Error('One or more homepage sections could not be found.');
+}
 ---
 
 <html lang="en">
@@ -9,9 +32,13 @@
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>Adam Trickett</title>
 	</head>
 	<body>
-		<h1>Astro</h1>
+        <main>
+            <HomeHero entry={hero} />
+            <HomeThreshold entry={threshold} />
+            <HomeIntro entry={intro} />
+        </main>
 	</body>
 </html>

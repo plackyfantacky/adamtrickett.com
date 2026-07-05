@@ -1,0 +1,50 @@
+---
+    import Logo from '../../assets/logo-white-outline.svg.astro'
+
+    const siteTitle = 'Adam Trickett';
+    const siteTagLine = 'Designer / Developer';
+
+    const navItems = [
+        {
+            label: 'Home',
+            href: '/'
+        },
+        {
+            label: 'Case Studies',
+            href: '/case-studies/'
+        },
+        {
+            label: 'Capabilities',
+            href: '/capsbilities/'
+        },
+        {
+            label: 'Contact',
+            href: '/contact/'
+        }
+    ];
+---
+<header id="top" class="site-header">
+    <div class="site-header__brand">
+        <a href="/" class="site-header__logo-link" aria-label="Back to homepage">
+            <Logo className="site-header__logo" />
+        </a>
+        <div class="site-header__headline-code" aria-label={`${siteTitle}: ${siteTagLine}`}>
+            <a href="/" class="site-header__title" href="/">
+                {siteTitle}
+            </a>
+            <span aria-hidden="true">=&gt;</span>
+            <span aria-hidden="true">{'{'}</span>
+            <span class="site-header__tagline">{siteTagLine}</span>
+            <span aria-hidden="true">{'}'}</span>
+        </div>
+    </div>
+    <nav class="site-header__nav" aria-label="Main navigation">
+        <ul>
+            {navItems.map((item) => (
+                <li>
+                    <a href={item.href}>{item.label}</a>
+                </li>
+            ))}
+        </ul>
+    </nav>
+</header>

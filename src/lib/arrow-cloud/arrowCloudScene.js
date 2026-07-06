@@ -8,6 +8,22 @@ import { createArrowRenderPieces } from './arrows/createArrowRenderPieces.js';
 import { createArrowPathComponents, setPathComponentReveal } from './arrows/createArrowPathComponents.js';
 import { createPathComponentMesh } from './arrows/pathComponents/index.js';
 
+const cameraTrackSettings = {
+    enabled: true,
+    start: new THREE.Vector3(-1.5, 5, 12.2),
+    centre: new THREE.Vector3(0, 5.15, 11.85),
+    end: new THREE.Vector3(1.5, 5, 12.2),
+    lookAt: new THREE.Vector3(0, 0, 0)
+};
+
+const cameraTrack = new THREE.QuadraticBezierCurve3(
+    cameraTrackSettings.start,
+    cameraTrackSettings.centre,
+    cameraTrackSettings.end
+);
+
+const cameraTrackTarget = new THREE.Vector3();
+
 export function createArrowCloudScene(container) {
     const scene = new THREE.Scene();
 
@@ -18,8 +34,8 @@ export function createArrowCloudScene(container) {
         100
     );
 
-    camera.position.set(0, 5, 12);
-    camera.lookAt(0, 0, 0);
+    camera.position.copy(cameraTrackSettings.start);
+    camera.lookAt(cameraTrackSettings.lookAt);
 
     const renderer = new THREE.WebGLRenderer({
         antialias: true,
@@ -104,6 +120,8 @@ export function createArrowCloudScene(container) {
             setPathComponentReveal(componentMesh, revealProgress);
         });
 
+        updateCameraTrack(camera, currentTime);
+
         renderer.render(scene, camera);
 
         if (isRunning) {
@@ -153,6 +171,29 @@ export function createArrowCloudScene(container) {
         destroy,
         resize
     };
+}
+
+function updateCameraTrack(camera, currentTime) {
+    if (!cameraTrackSettings.enabled) {
+        return;
+    }
+
+    const rawProgress = THREE.MathUtils.clamp(
+        currentTime / animationSettings.timelineDuration,
+        0,
+        1
+    );
+
+    const easedProgress = easeInOutSine(rawProgress);
+
+    cameraTrack.getPoint(easedProgress, cameraTrackTarget);
+
+    camera.position.copy(cameraTrackTarget);
+    camera.lookAt(cameraTrackSettings.lookAt);
+}
+
+function easeInOutSine(progress) {
+    return -(Math.cos(Math.PI * progress) - 1) / 2;
 }
 
 function getContainerAspect(container) {

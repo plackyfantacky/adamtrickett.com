@@ -11,6 +11,9 @@
         },
         {
             "path": "../portfolio-content"
+        },
+        {
+            "path": "../arrow-cloud-prototype"
         }
     ],
     "settings": {

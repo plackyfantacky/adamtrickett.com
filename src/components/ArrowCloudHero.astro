@@ -5,7 +5,23 @@
     <div class="arrow-cloud__canvas" data-arrow-cloud></div>
 </section>
 <script>
-    import "../lib/arrow-cloud/main.js";
+    import { createArrowCloudScene } from "../lib/arrow-cloud/src/createArrowCloudScene";
+    import { animationSettings, arrowPaths, cameraTrack } from "../arrowData.js";
+
+    const mountElement = document.querySelector('[data-arrow-cloud]');
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce').matches;
+
+    if (mountElement && !prefersReducedMotion) {
+        const arrowCloudScene = createArrowCloudScene(mountElement, {
+            animationSettings,
+            arrowPaths,
+            cameraTrack
+        });
+
+        document.addEventListener('astro:before-swap', () => {
+            arrowCloudScene.destroy();
+        }, { once: true});
+    }
 </script>
 <style>
     .arrow-cloud {

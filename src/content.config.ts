@@ -51,10 +51,30 @@ const caseStudies = defineCollection({
         url: z.httpUrl().optional(),
         year: z.union([z.string(), z.number()]).optional(),
         role: z.array(z.string()).optional(),
+
+        preview: z.object({
+            description: z.string(),
+            image: z.string().optional(),
+        }).optional()
+    }),
+});
+
+
+const services = defineCollection({
+    loader: glob({
+        base: './content/previews/services',
+        pattern: '**/*.{md,mdx}'
+    }),
+    schema: z.object({
+        slug: z.string(),
+        heading: z.string(),
+        icon_path: z.string().optional(),
+        cta: linkSchema.optional(),
     }),
 });
 
 export const collections = {
     'homepage': homepage,
     'case-studies': caseStudies,
+    'services': services
 };

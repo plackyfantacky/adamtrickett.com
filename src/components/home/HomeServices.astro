@@ -1,0 +1,67 @@
+---
+import { render, getCollection } from 'astro:content';
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const {
+    label,
+    heading,
+    items = []
+} = entry.data;
+
+const serviceEntries = await getCollection('services');
+
+const services = items.map((slug: any) => {
+    const service = serviceEntries.find(
+        (service) => service.data.slug === slug
+    );
+
+    if (!service) {
+        console.warn(`Service preview not found: ${slug}`);
+    }
+
+    return service
+}).filter((service: any) => service !== undefined);
+
+
+---
+<section class="home-section home-services" aria-labelledby="home-services-title">
+    {label && (
+        <p class="label">{label}</p>
+    )}
+
+    {heading && (
+        <h2 id="home-services-title">{heading}</h2>
+    )}
+
+    <Content />
+
+    <div class="home-services__items">
+        {services.map(async (service: any) => {
+            const { Content: ServiceContent } = await render(service);
+
+            return (
+                <article class="home-services__item">
+                    {service.data.icon_path && (
+                        <img 
+                            src={service.data.icon_path} 
+                            alt=""
+                            aria-hidden="true"
+                        />
+                    )}
+
+                    <h3>{service.data.heading}</h3>
+
+                    <ServiceContent />
+
+                    {service.data.cta && (
+                        <a href={service.data.cta.url}>
+                            {service.data.cta.label}
+                        </a>
+                    )}
+                </article>
+            );
+        })}
+    </div>
+</section>

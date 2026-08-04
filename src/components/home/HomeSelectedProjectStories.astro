@@ -1,0 +1,60 @@
+---
+import { render, getCollection } from 'astro:content';
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const {
+    label,
+    heading,
+    items = []
+} = entry.data;
+
+const caseStudyEntries = await getCollection('case-studies');
+
+const projectStories = items.map((slug: any) =>{
+    const projectStory = caseStudyEntries.find(
+        (caseStudy) => caseStudy.data.slug === slug
+    );
+
+    if (!projectStory) {
+        throw new Error(`Case study not found: ${slug}`);
+    }
+
+    return projectStory;
+});
+---
+<section class="home-section home-selected-project-stories" aria-labelledby="home-selected-project-stories-title">
+    {label && (
+        <p class="label">{label}</p>
+    )}
+
+    {heading && (
+        <h2 id="home-selected-project-stories-title">{heading}</h2>
+    )}
+
+    <Content />
+
+    <div class="home-selected-project-stories__items">
+        {projectStories.map((projectStory: any) => (
+            <article class="home-selected-project-stories__item">
+                {projectStory.data.preview?.image && (
+                    <img 
+                        src={projectStory.data.preview.image} 
+                        alt=""
+                    />
+                )}
+
+                <h3>{projectStory.data.title}</h3>
+                
+                {projectStory.data.preview?.description && (
+                    <p>{projectStory.data.preview.description}</p>
+                )}
+
+                <a href={`/work/${projectStory.data.slug}/`}>
+                    View Project
+                </a>
+            </article>
+        ))}
+    </div>
+</section>

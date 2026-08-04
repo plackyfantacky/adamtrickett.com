@@ -8,6 +8,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "build:arrow-cloud": "./.build/build-arrow-cloud.sh",
+    "build:arrow-cloud-labs": "./.build/build-arrow-cloud-labs.sh",
     "preview": "astro preview",
     "astro": "astro"
   },

@@ -1,0 +1,51 @@
+---
+import { render, getCollection } from "astro:content";
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const {
+    label,
+    heading,
+    items = []
+} = entry.data;
+
+const projectEntries = await getCollection('projects');
+
+const projects = items.map((slug: any) => {
+    const projectEntry = projectEntries.find(
+        (project) => project.data.slug === slug
+    );
+
+    if (!projectEntry) {
+        throw new Error(`Project not found: ${slug}`);
+    }
+
+    return projectEntry;
+});
+---
+<section class="home-section home-more-shipped-work" aria-labelledby="home-more-shipped-work-title">
+    {label && (
+        <p>{label}</p>
+    )}
+
+    {heading && (
+        <h2 id="home-more-shipped-work-title">{heading}</h2>
+    )}
+
+    <Content />
+
+    <div class="home-more-shipped-work__items">
+        {projects.map((project: any) => (
+            <article class="home-more-shipped-work__item">
+                {project.data.thumbnail && (
+                    <img
+                        src={project.data.thumbnail}
+                        alt=""
+                    />
+                )}
+                <h3>{project.data.title}</h3>
+            </article>
+        ))}
+    </div>
+</section>

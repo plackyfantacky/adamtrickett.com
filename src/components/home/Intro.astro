@@ -1,0 +1,38 @@
+---
+import { render } from 'astro:content';
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const {
+    label,
+    heading,
+    primary_cta,
+    secondary_cta
+} = entry.data;
+---
+
+<section class="home-section home-intro" aria-labelledby="home-intro-title">
+    {label && (
+        <p>{label}</p>
+    )}
+
+    {heading && (
+        <h2 id="home-intro-title">{heading}</h2>
+    )}
+
+    <Content />
+
+    {(primary_cta || secondary_cta) && (
+        <div class="buttons">
+            { primary_cta && (
+                <a href={primary_cta.url} class="button button-primary">{primary_cta.label}</a>
+            )}
+    
+            { secondary_cta && (
+                <a href={secondary_cta.url} class="button button-secondary">{secondary_cta.label}</a>
+            )}
+        </div>
+    )}
+
+</section>

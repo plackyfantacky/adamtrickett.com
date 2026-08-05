@@ -19,8 +19,8 @@ const homepage = defineCollection({
         heading: z.string().optional(),
         subheading: z.string().optional(),
 
-        primaryCta: linkSchema.optional(),
-        secondaryCta: linkSchema.optional(),
+        primary_cta: linkSchema.optional(),
+        secondary_cta: linkSchema.optional(),
         button: linkSchema.optional(),
         
         items: z.array(
@@ -59,6 +59,22 @@ const caseStudies = defineCollection({
     }),
 });
 
+const projects = defineCollection({
+   loader: glob({
+        base: './content/projects',
+        pattern: '**/*.{md,mdx}'
+    }),
+    schema: z.object({
+        title: z.string(),
+        slug: z.string(),
+        url: z.httpUrl().optional(),
+        studio_agency: z.string().optional(),
+        year: z.union([z.string(), z.number()]).optional(),
+        thumbnail: z.string().optional(),
+        image: z.string().optional(),
+    })
+});
+
 
 const services = defineCollection({
     loader: glob({
@@ -76,5 +92,6 @@ const services = defineCollection({
 export const collections = {
     'homepage': homepage,
     'case-studies': caseStudies,
-    'services': services
+    'services': services,
+    'projects': projects
 };

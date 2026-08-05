@@ -1,12 +1,12 @@
 ---
 import '../styles/main.scss';
-import ArrowCloud from "../components/ArrowCloudHero.astro";
 import { getCollection } from 'astro:content'
 
-import HomeHero from "../components/home/HomeHero.astro";
-import HomeIntro from "../components/home/HomeIntro.astro"
-import HomeServices from "../components/home/HomeServices.astro";
-import HomeSelectedProjectStories from "../components/home/HomeSelectedProjectStories.astro";
+import Hero from "../components/home/Hero.astro";
+import Intro from "../components/home/Intro.astro"
+import Services from "../components/home/Services.astro";
+import SelectedProjectStories from "../components/home/SelectedProjectStories.astro";
+import MoreShippedWork from "../components/home/MoreShippedWork.astro";
 
 const homepageEntries = await getCollection('homepage');
 
@@ -20,11 +20,11 @@ const hero = homepageSections.hero;
 const intro = homepageSections.intro;
 const services = homepageSections.services;
 const projectStories = homepageSections['selected-project-stories'];
+const moreShippedWork = homepageSections['more-shipped-work'];
 
-
-// if (!hero || !threshold || !intro) {
-//     throw new Error('One or more homepage sections could not be found.');
-// }
+if (!hero || !intro || !services || !projectStories || !moreShippedWork) {
+    throw new Error('One or more homepage sections could not be found.');
+}
 ---
 
 <!DOCTYPE html>
@@ -39,10 +39,11 @@ const projectStories = homepageSections['selected-project-stories'];
 	</head>
 	<body>
         <main>
-            <HomeHero entry={hero} />
-            <HomeIntro entry={intro} />
-            <HomeServices entry={services} />
-            <HomeSelectedProjectStories entry={projectStories} />
+            <Hero entry={hero} />
+            <Intro entry={intro} />
+            <Services entry={services} />
+            <SelectedProjectStories entry={projectStories} />
+            <MoreShippedWork entry={moreShippedWork} />
         </main>
 	</body>
 </html>

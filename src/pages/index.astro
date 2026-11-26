@@ -1,5 +1,5 @@
 ---
-import '../styles/main.scss';
+import '../styles/main.css';
 import { getCollection } from 'astro:content'
 
 import Hero from "../components/home/Hero.astro";
@@ -9,6 +9,15 @@ import SelectedProjectStories from "../components/home/SelectedProjectStories.as
 import MoreShippedWork from "../components/home/MoreShippedWork.astro";
 
 const homepageEntries = await getCollection('homepage');
+
+console.log('Homepage entries:', homepageEntries.length);
+
+console.table(
+    homepageEntries.map(entry => ({
+        id: entry.id,
+        section: entry.data.section
+    }))
+);
 
 const homepageSections = Object.fromEntries(
     homepageEntries.map((entry) => {
@@ -22,8 +31,22 @@ const services = homepageSections.services;
 const projectStories = homepageSections['selected-project-stories'];
 const moreShippedWork = homepageSections['more-shipped-work'];
 
-if (!hero || !intro || !services || !projectStories || !moreShippedWork) {
-    throw new Error('One or more homepage sections could not be found.');
+const requiredSections = [
+    'hero',
+    'intro',
+    'services',
+    'selected-project-stories',
+    'more-shipped-work'
+];
+
+const missingSections = requiredSections.filter(
+    section => !homepageSections[section]
+);
+
+if (missingSections.length > 0) {
+    throw new Error(
+        `Missing homepage sections: ${missingSections.join(', ')}`
+    );
 }
 ---
 

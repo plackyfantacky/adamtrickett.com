@@ -24,11 +24,29 @@
     --palette-inkwell-inception: #1e1e1e;
 
     /*
-    * Colour Tokens
+    * Active site colours
     */
 
-    --colour-brand-primary: #f99d2a;
-    --colour-brand-secondary: #d98522;
+    --colour-page: var(--palette-white);
+    --colour-surface: var(--palette-white);
+    --colour-surface-warm: var(--palette-blanched-almond);
+
+    --colour-text: var(--palette-inkwell-inception);
+    --colour-text-muted: var(--palette-vulcanised);
+    --colour-text-soft: var(--palette-black-mana);
+
+    --colour-border: var(--palette-ash);
+
+    --colour-brand-primary: var(--palette-carona);
+    --colour-brand-secondary: var(--palette-hamtaro-brown);
+    --colour-brand-dark: var(--palette-inkwell-inception);
+
+    --colour-highlight: var(--palette-torchlight);
+    --colour-highlight-soft: var(--palette-bisque);
+
+    /*
+    * Colour Tokens
+    */
 
     --colour-background-primary: #161616;
     --colour-background-secondary: #1d1d1d;
@@ -44,28 +62,6 @@
     --colour-forms-background: #232323;
     --colour-forms-border: #3a3a3a;
     --colour-forms-text: #f2eee8;
-
-    /*
-    * Active site colours
-    */
-
-    --colour-page: var(--palette-white);
-    --colour-surface: var(--palette-white);
-    --colour-surface-warm: var(--palette-blanched-almond);
-
-    --colour-text: var(--palette-inkwell-inception);
-    --colour-text-muted: var(--palette-vulcanised);
-    --colour-text-soft: var(--palette-black-mana);
-
-    --colour-border: var(--palette-ash);
-
-    --colour-brand-primary: #ff9d2a;
-    --colour-brand-primary-original: var(--palette-carona);
-    --colour-brand-secondary: var(--palette-hamtaro-brown);
-    --colour-brand-dark: var(--palette-inkwell-inception);
-
-    --colour-highlight: var(--palette-torchlight);
-    --colour-highlight-soft: var(--palette-bisque);
 
     /*
      * Typography

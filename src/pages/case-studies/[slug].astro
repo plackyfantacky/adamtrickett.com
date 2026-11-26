@@ -1,6 +1,6 @@
 ---
 import SiteHeader from '../../components/Header.astro';
-import '../../styles/main.scss';    
+import '../../styles/main.css';    
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
@@ -23,7 +23,6 @@ const { Content } = await render(caseStudy);
 ---
 
 <!doctype html>
-<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">

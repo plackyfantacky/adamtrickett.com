@@ -1,50 +1,52 @@
 ---
-    import Logo from '../../assets/logo-white-outline.svg.astro'
+    import Logo from '../../assets/logo-colour.svg.astro'
+    import Search from '../../assets/icons/search.svg.astro'
+
+    import { navigation } from '../site';
 
     const siteTitle = 'Adam Trickett';
-    const siteTagLine = 'Designer / Developer';
-
-    const navItems = [
-        {
-            label: 'Home',
-            href: '/'
-        },
-        {
-            label: 'Case Studies',
-            href: '/case-studies/'
-        },
-        {
-            label: 'Capabilities',
-            href: '/capsbilities/'
-        },
-        {
-            label: 'Contact',
-            href: '/contact/'
-        }
-    ];
 ---
 <header id="top" class="site-header">
-    <div class="site-header__brand">
-        <a href="/" class="site-header__logo-link" aria-label="Back to homepage">
-            <Logo className="site-header__logo" />
+    <script>
+        const navToggle = document.querySelector('.nav-toggle');
+        const navElement = document.getElementById('primary_nav');
+
+        navToggle?.addEventListener('click', () => {
+            const isOpen = navToggle.getAttribute('aria-expanded') === 'true';
+            const nextState = !isOpen;
+
+            navToggle.setAttribute('aria-expanded', String(nextState));
+            navToggle.textContent = nextState ? 'close' : 'menu';
+            navElement?.classList.toggle('is-open', nextState);
+        })
+    </script>
+    <div class="site-header__brand brand">
+        <a href="/" class="site-header__logo-link logo logo-link" aria-label="Back to homepage">
+            <Logo className="site-header__logo logo-svg svg" />
         </a>
-        <div class="site-header__headline-code" aria-label={`${siteTitle}: ${siteTagLine}`}>
-            <a href="/" class="site-header__title" href="/">
-                {siteTitle}
-            </a>
-            <span aria-hidden="true">=&gt;</span>
-            <span aria-hidden="true">{'{'}</span>
-            <span class="site-header__tagline">{siteTagLine}</span>
-            <span aria-hidden="true">{'}'}</span>
+        <a href="/" class="site-header__title title">
+            {siteTitle}
+        </a>
+        <div class="site-header__tagline tagline">
+            <span>Graphic Designer</span>
+            <span>+</span>
+            <span>Web Developer</span>
         </div>
     </div>
-    <nav class="site-header__nav" aria-label="Main navigation">
-        <ul>
-            {navItems.map((item) => (
-                <li>
-                    <a href={item.href}>{item.label}</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary_nav">menu</button>
+    <nav id="primary_nav" class="site-header__nav nav" aria-label="Main navigation">
+        <ul class="site-header__nav-list nav-list">
+            {navigation.map((item) => (
+                <li class="site-header__nav-item nav-item">
+                    <a class="site-header__nav-item-link nav-link" href={item.url}>{item.label}</a>
                 </li>
             ))}
+            <li class="site-header__nav-search nav-search">
+                <a class="site-header__nav-search nav-search search" href="#">
+                    <Search className="site-header__nav-search-icon search-icon" />
+                    <span class="search-label">Search</span>
+                </a>
+            </li>
         </ul>
     </nav>
 </header>

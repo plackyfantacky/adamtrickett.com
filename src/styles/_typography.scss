@@ -8,7 +8,7 @@ body {
     font-family: $fontBody;
     font-weight: $fontWeightBody;
     line-height: $lineHeightBody;
-    color: $colorText;
+    color: $colourTextPrimary;
 }
 
 h1,
@@ -22,7 +22,7 @@ h6 {
     font-weight: $fontWeightHeading;
     line-height: $lineHeightHeading;
     letter-spacing: $letterSpacingHeading;
-    color: $colorText;
+    color: $colourTextPrimary;
 }
 
 h1 { font-size: $fontSizeH1; }
@@ -37,5 +37,5 @@ p {
     margin: 0 0 1.15rem;
     font-size: $fontSizeBody;
     line-height: $lineHeightBody;
-    color: $colorTextMuted;
+    color: $colourTextSecondary;
 }

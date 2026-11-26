@@ -2,22 +2,23 @@
  * Completely unnecessary CSS variable to Sass token bridge. I don't care, this is my website and I'll do what I want with it. I miss Sass.
  */
 
-$colorPage: var(--color-page);
-$colorSurface: var(--color-surface);
-$colorSurfaceWarm: var(--color-surface-warm);
+$colourBrandPrimary: var(--colour-brand-primary);
+$colourBrandSecondary: var(--colour-brand-secondary);
 
-$colorText: var(--color-text);
-$colorTextMuted: var(--color-text-muted);
-$colorTextSoft: var(--color-text-soft);
+$colourBackgroundPrimary: var(--colour-background-primary);
+$colourBackgroundSecondary: var(--colour-background-secondary);
+$colourBackgroundRaised: var(--colour-background-raised);
+$colourBackgroundSoft: var(--colour-background-soft);
 
-$colorBorder: var(--color-border);
+$colourTextPrimary: var(--colour-text-primary);
+$colourTextSecondary: var(--colour-text-secondary);
+$colourTextMuted: var(--colour-text-muted);
 
-$colorBrand: var(--color-brand-primary);
-$colorBrandPecondary: var(--color-brand-secondary);
-$colorBrandDark: var(--color-brand-dark);
+$colourBorderDefault: var(--colour-border-default);
 
-$colorHighlight: var(--color-highlight);
-$colorHighlightSoft: var(--color-highlight-soft);
+$colourFormsBackground: var(--colour-forms-background);
+$colourFormsBorder: var(--colour-forms-border);
+$colourFormsText: var(--colour-forms-text);
 
 /*
  * Typography

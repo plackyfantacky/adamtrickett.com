@@ -1,12 +1,41 @@
-<footer>
-    <div>
-        <p>Site and original content: Copyright © [year] Adam Trickett</p>
-        <p>3rd party content copyright belongs to their respective owners</p>
-    </div>
-    <div>
+---
+import type { AstroComponentFactory } from "astro/runtime/server/index.js";
+import { socialLinks } from "../site";
 
+import LogoWhite from '../../assets/logo-white-outline.svg.astro'
+
+const iconFiles = import.meta.glob<{ default: AstroComponentFactory }>(
+    "../../assets/icons/icon--*.svg.astro",
+    { eager: true },
+);
+
+const getIcon = (icon: string) => {
+    const path = `../../assets/icons/icon--${icon}.svg.astro`;
+    return iconFiles[path]?.default;
+};
+
+const year = new Date().getFullYear();
+---
+
+<footer>
+    <div class="footer__copyright copyright">
+        <p>Copyright &copy; {year} Adam Trickett</p>
+        <p>past project copyrights belong to their respective owners</p>
     </div>
-    <div>
-        
-    </div>
+    <ul class="footer__social-links social-icons">
+        {
+            socialLinks.map(({ url, title, icon }) => {
+                const Icon = getIcon(icon);
+
+                return (
+                    <li class="footer__social-links__icon social-icon">
+                        <a href={url} title={title} class="footer__social-links__link social-icon-link" target="_blank">
+                            { Icon && <Icon className="social-icon-svg" />}
+                        </a>
+                    </li>
+                );
+            })
+        }
+    </ul>
+    <LogoWhite className="footer__logo" />
 </footer>

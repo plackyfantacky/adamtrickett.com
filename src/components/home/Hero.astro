@@ -1,5 +1,4 @@
 ---
-import ArrowCloud from "../home/ArrowCloud.astro";
 import { render } from 'astro:content';
 
 const { entry } = Astro.props;
@@ -12,7 +11,6 @@ const {
 ---
 
 <section class="home-hero" aria-labelledby="home-hero-title">
-    <ArrowCloud />
     <div class="home-hero__content">
         { label && (
             <p class="home-hero__label">{label}</p>

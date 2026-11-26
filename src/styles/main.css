@@ -1,23 +1,13 @@
-@use '_fonts';
-@use '_tokens';
-@use '_bridge' as *; /* don't judge me */
+@import './fonts.css';
+@import './_tokens.css';
 
-@use '_mixins';
-
-@use '_reset';
-@use '_typography';
-
-@use './components/arrow-cloud';
-
-/* debug */
-// * {
-//     outline: 1px solid rgb(255 0 0 / 20%);
-// }
+@import './_reset.css';
+@import './_typography.css';
 
 header.site-header {
     align-items: center;
-    background: $colourBackgroundSecondary;
-    color: $colourTextPrimary;
+    background: var(--colour-background-secondary);
+    color: var(--colour-text-primary);
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
@@ -193,7 +183,7 @@ main {
 }
 
 footer {
-    background-color: $colourBackgroundSecondary;
+    background-color: var(--colour-background-secondary);
     display: grid;
     gap: 1.5rem;
     grid-template-columns: 1fr;
@@ -236,12 +226,12 @@ footer {
             width: 2.5rem;
 
             .social-icon-link {
-                color: $colourTextSecondary;
+                color: var(--colour-text-secondary);
                 display: block;
                 text-decoration:none;
 
                 &:hover {
-                    color: $colourTextPrimary;
+                    color: var(--colour-text-primary);
                 }
 
                 .social-icon-svg {
